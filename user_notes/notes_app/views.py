@@ -5,14 +5,16 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
 
+# /notes_app/templates/notes_app/index.html
+
 class IndexView(TemplateView):
-	template_name = 'login.html'
+	template_name = 'notes_app/login.html'
 
 class LoginSuccess(LoginRequiredMixin, TemplateView):
-	template_name = 'home.html'
+	template_name = 'notes_app/home.html'
 
 class Register(TemplateView):
-	template_name = 'register.html'
+	template_name = 'notes_app/register.html'
 
 def register_user(request):
 	data = request.POST
