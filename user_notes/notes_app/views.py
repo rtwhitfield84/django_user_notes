@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
@@ -13,14 +14,20 @@ from . models import OneNote
 class IndexView(TemplateView):
 	template_name = 'notes_app/login.html'
 
-class LoginSuccess(LoginRequiredMixin, TemplateView):
+class LoginSuccess(View):
 	template_name = 'notes_app/home.html'
+
+	def get(self, request):
+		self.notes = OneNote.objects.all()
+		return render(request,'notes_app/home.html', {'notes': self.notes})
 
 class Register(TemplateView):
 	template_name = 'notes_app/register.html'
 
 class NewNote(TemplateView):
 	template_name = 'notes_app/new_note.html'
+
+
 
 def register_user(request):
 	data = request.POST
