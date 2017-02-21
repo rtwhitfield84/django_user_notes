@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -69,6 +69,12 @@ def add_note(request):
 	)
 
 	return HttpResponseRedirect(redirect_to='/my_notes')
+
+
+def note_detail(request, note_id):
+	print(request)
+	note = get_object_or_404(OneNote, note_id=id)
+	return render(request, 'notes_app/note_detail.html', {'note': note})
 
 
 

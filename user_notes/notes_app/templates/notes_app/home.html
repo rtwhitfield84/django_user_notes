@@ -4,9 +4,10 @@
 <h1>Notes</h1>
 {% for note in notes %}
 <ul>
-	<li>{{ note.title }}</li>
+	<a href="{% url 'notes_app:note_detail' 'note_id=note.id' %}"><li>{{ note.title }} {{ note.id }}</li></a>
 </ul>
 {% endfor %}
 <a href="{% url 'notes_app:new_note' %}">Add Note</a>
   <a href="{% url 'notes_app:logout' %}">Log Out</a>
 {% endblock %}
+
