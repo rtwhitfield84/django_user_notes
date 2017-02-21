@@ -12,7 +12,7 @@ class LoginSuccess(LoginRequiredMixin, TemplateView):
 	template_name = 'home.html'
 
 class Register(TemplateView):
-	template_name 'register.html'
+	template_name = 'register.html'
 
 def register_user(request):
 	data = request.POST

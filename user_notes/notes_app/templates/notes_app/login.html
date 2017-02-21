@@ -1,0 +1,10 @@
+{% extends 'notes_app/index.html' %}
+
+{% block content %}
+<form class="" action="{% url 'notes_app:login' %}" method="post">
+	{% csrf_token %}
+	<input type="text" name="username" value="" placeholder="Enter Username">
+	<input type="text" name="password" value="" placeholder="Enter Password">
+</form>
+<p>Not a user? Register<a href="{% url 'notes_app:register' %}"> here!</a></p>
+{% endblock %}
