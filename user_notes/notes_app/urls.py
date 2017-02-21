@@ -1,10 +1,12 @@
 from django.conf.urls import url
-from . import views
+from .import views
 
 app_name = 'notes_app'
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^success/', views.LoginSuccess.as_view(), name='success'),
+    url(r'^my_notes/', views.LoginSuccess.as_view(), name='my_notes'),
+    url(r'^new_note/', views.NewNote.as_view(), name='new_note'),
+    url(r'^add_note/', views.add_note, name='add_note'),
     url(r'^register/', views.Register.as_view(), name='register'),
     url(r'^login/', views.login_user, name='login'),
     url(r'^register_user/', views.register_user, name='register_user'),

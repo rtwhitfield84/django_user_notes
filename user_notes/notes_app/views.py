@@ -4,8 +4,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
+from . models import OneNote
 
-# /notes_app/templates/notes_app/index.html
+
+
+
 
 class IndexView(TemplateView):
 	template_name = 'notes_app/login.html'
@@ -15,6 +18,9 @@ class LoginSuccess(LoginRequiredMixin, TemplateView):
 
 class Register(TemplateView):
 	template_name = 'notes_app/register.html'
+
+class NewNote(TemplateView):
+	template_name = 'notes_app/new_note.html'
 
 def register_user(request):
 	data = request.POST
@@ -29,7 +35,7 @@ def register_user(request):
 	return login_user(request)
 
 def login_user(request):
-	data= request.POST
+	data = request.POST
 	username = data['username']
 	password = data['password']
 	user = authenticate(
@@ -41,8 +47,30 @@ def login_user(request):
 		login(request=request, user=user)
 	else:
 		HttpResponseRedirect(redirect_to='/')
-	return HttpResponseRedirect(redirect_to='/success')
+	return HttpResponseRedirect(redirect_to='/my_notes')
 
 def logout_user(request):
 	logout(request)
 	return HttpResponseRedirect(redirect_to='/')
+
+def add_note(request):
+	data = request.POST
+	OneNote.objects.create(
+		title=data['title'],
+		note=data['note'],
+		author=data['user']
+	)
+
+	return HttpResponseRedirect(redirect_to='/my_notes')
+
+
+
+
+
+
+
+
+
+
+
+
