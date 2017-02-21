@@ -18,7 +18,7 @@ class LoginSuccess(View):
 	template_name = 'notes_app/home.html'
 
 	def get(self, request):
-		self.notes = OneNote.objects.all()
+		self.notes = OneNote.objects.filter(author=request.user)
 		return render(request,'notes_app/home.html', {'notes': self.notes})
 
 class Register(TemplateView):
