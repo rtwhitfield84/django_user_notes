@@ -23,7 +23,7 @@ def register_user(request):
 		email=data['email'],
 		first_name=data['first_name'],
 		last_name=data['last_name'],
-		passwors=data['password']
+		password=data['password']
 	)
 
 	return login_user(request)
