@@ -71,9 +71,9 @@ def add_note(request):
 	return HttpResponseRedirect(redirect_to='/my_notes')
 
 
-def note_detail(request, note_id):
+def note_detail(request, id):
 	print(request)
-	note = get_object_or_404(OneNote, note_id=id)
+	note = get_object_or_404(OneNote, id=id)
 	return render(request, 'notes_app/note_detail.html', {'note': note})
 
 
