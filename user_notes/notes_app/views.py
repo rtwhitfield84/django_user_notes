@@ -58,7 +58,7 @@ def add_note(request):
 	OneNote.objects.create(
 		title=data['title'],
 		note=data['note'],
-		author=data['user']
+		author=request.user
 	)
 
 	return HttpResponseRedirect(redirect_to='/my_notes')
